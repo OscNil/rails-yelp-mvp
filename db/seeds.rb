@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+puts 'Initializing seeding sequence...'
+categories = %w(chinese italian japanese french belgian)
+5.times do
+  values = { name: Faker::Restaurant.name, address: Faker::Address.full_address, category: categories.sample, phone_number: Faker::PhoneNumber.cell_phone_with_country_code  }
+  my_rest = Restaurant.new(values)
+  my_rest.save!
+end
+
+puts 'Seeding successful!'
